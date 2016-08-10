@@ -8,19 +8,32 @@ contract EtherTransfer is Owned{
     uint constant Fee = 5;
     uint constant Decs = 10000;
 
+    bool public IsEthereum = false; 
+
     //Events log
     event ETHTransfer(address indexed From,address indexed To, uint Value);
+    event ETCReturn(address indexed Return, uint Value);
+
     event ETCTransfer(address indexed From,address indexed To, uint Value);
+    event ETHReturn(address indexed Return, uint Value);
     
     //Is Vitalik Buterin on the Fork ? >_<
     AmIOnTheFork IsHeOnTheFork = AmIOnTheFork(0x2bd2326c993dfaef84f696526064ff22eba5b362);
+
+    //Construction function
+    function EtherTransfer(){
+        IsEthereum = IsHeOnTheFork.forked();
+    }
 
     //Only send ETH
     function SendETH(address ETHAddress) returns(bool){
         uint Value = msg.value - (msg.value*Fee/Decs);
         //It is forked chain ETH
-        if(IsHeOnTheFork.forked() && ETHAddress.send(Value)){
+        if(IsEthereum && ETHAddress.send(Value)){
             ETHTransfer(msg.sender, ETHAddress, Value);
+            return true;
+        }else if(!IsEthereum && msg.sender.send(msg.value)){
+            ETCReturn(msg.sender, msg.value);
             return true;
         }
         //No ETC is trapped
@@ -31,8 +44,11 @@ contract EtherTransfer is Owned{
     function SendETC(address ETCAddress) returns(bool){
         uint Value = msg.value - (msg.value*Fee/Decs);
         //It is non-forked chain ETC
-        if(!IsHeOnTheFork.forked() && ETCAddress.send(Value)){
+        if(!IsEthereum && ETCAddress.send(Value)){
             ETCTransfer(msg.sender, ETCAddress, Value);
+            return true;
+        } else if(IsEthereum && msg.sender.send(msg.value)){
+            ETHReturn(msg.sender, msg.value);
             return true;
         }
         //No ETH is trapped
