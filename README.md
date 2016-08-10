@@ -8,7 +8,9 @@ Watch our contract to deal with it:
 
 ### Ether Transfer on both chains
 
+
 <img src="https://etcrelay.github.io/images/contents/ether-transfer-address.png">
+
 
 Address: [0x50491518707B238f91981849A6F241c77f948Fc8](https://etherscan.io/address/0x50491518707B238f91981849A6F241c77f948Fc8)
 
@@ -36,13 +38,17 @@ Address: [0x50491518707B238f91981849A6F241c77f948Fc8](https://etherscan.io/addre
 
 ### ETH
 
+
 <img src="https://etcrelay.github.io/images/contents/eth-transfer.png">
+
 
 https://etherscan.io/tx/0x0bb132078852b889341489df989f05c5ac89f0ddc8f15c5c01ebcb17f2a8c235
 
 ### ETC
 
+
 <img src="https://etcrelay.github.io/images/contents/etc-transfer.png">
+
 
 https://gastracker.io/tx/0x02a949ec4809bd58f74f256e699a4de2b5b399daa8acfecd36e695577a76b187
 
