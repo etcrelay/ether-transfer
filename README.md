@@ -1,6 +1,8 @@
 # Ether Transfer
 
-Safely transfer your ETH/ETC without split. 
+Safely transfer your ETH/ETC without split.
+
+Send ethereum without split.
 
 ## Watch Contract
 
